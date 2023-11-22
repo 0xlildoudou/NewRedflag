@@ -44,4 +44,4 @@ python3 NewFlag.py -A --dns 127.0.0.1
 ```
 
 ## Support
-<img src=.github/buymeacoffe.png href="https://www.buymeacoffee.com/0xlildoudou/" width="200">
+<img src=".github/buymeacoffe.png" href="https://www.buymeacoffee.com/0xlildoudou/" width="200">
