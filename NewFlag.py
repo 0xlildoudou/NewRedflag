@@ -1,4 +1,4 @@
-import datetime, argparse, re, time
+import datetime, argparse, re, fileinput
 from requests import get
 
 class RedFlagDomain:
@@ -29,8 +29,8 @@ if __name__ == "__main__":
     parser.add_argument("--day","-d", help="Day of list")
     parser.add_argument("--all","-A", help="All list", action="store_true")
     parser.add_argument("--output","-o", help="Output file")
+    parser.add_argument("--dns", help="Output format option for create DNS redirect")
     args = parser.parse_args()
-
 
     if args.all:
         output = args.output or "all.txt"
@@ -60,3 +60,15 @@ if __name__ == "__main__":
                 download_date(output, date)
             else:
                 print('Date not valid ! Pls use format : Year-month-day')
+
+    if args.dns:
+        dns_entry = '   CNAME   ' + str(args.dns)
+        with fileinput.FileInput(output, inplace=True) as dns_file:
+            first_line = True
+            for line in dns_file:
+                if first_line:
+                    first_line = False
+                    continue
+
+                newline = line.rstrip() + dns_entry
+                print(newline)
